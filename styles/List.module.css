@@ -1,0 +1,59 @@
+.ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin:0;
+    cursor: pointer;
+    background: rgba(55, 66, 250,0.5);
+}
+.ul li{
+    text-align: center;
+    font-size: 22px;
+    padding:10px 20px;
+    font-family: 'Open Sans', sans-serif,'Century Gothic';
+    transition: 0.5s;
+    display: inline-block;
+    width:150px;
+    padding:6px 0px;
+}
+
+.ul li a{
+    transition: 0.5s;
+    display: inline-block;
+    text-decoration: none;
+    color:#fff;
+    width:150px;
+}
+.home, .person, .sign{
+    width:25px;
+    font-size: 20px;
+}
+
+.phone{
+    width:35px;
+    font-size: 20px;
+}
+
+.ul li:hover{
+    border-radius: 25% 10%;
+    background-color:#2980b9;
+    padding:0px 0px;
+
+}
+.ul li.active{
+    border-radius: 20% 5%;
+    background-color:#2980b9;
+    padding:0px 0px;
+}
+
+.ul li:hover a{
+    font-size: 25px;
+}
+
+@media (max-width: 900px) {
+
+}
+@media (max-width: 500px){
+
+}

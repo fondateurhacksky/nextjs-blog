@@ -1,0 +1,41 @@
+.footer{
+    display: flex;
+    padding: 15px;
+    background-color: #dfe6e9;
+    
+}
+.poster{
+    width:400px;
+    height:300px;
+    border:1px solid black;
+}
+.page{
+    display: grid;
+    flex-direction: column;
+    margin: 20px 30px 20px 20px;
+    padding: 10px;
+}
+.sous_page1, .sous_page2, .sous_page3{
+    text-align: justify;
+    width:800px;
+}
+
+.page  img{
+    float: left;
+    margin-right:20px;
+}
+
+@media (max-width: 900px) {
+    .poster{
+        display: none;
+    }
+    .footer{
+        padding:10px;
+    }
+    .divText1, .divText2, .divText3{
+        text-align: justify;
+        width:200px;
+        margin:20px 20 20px 10px;
+    }
+
+}

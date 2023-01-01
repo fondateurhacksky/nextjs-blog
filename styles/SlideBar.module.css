@@ -1,0 +1,129 @@
+.slider{
+    position: relative;
+    background-color: #000116;
+    font-family: 'Open Sans', sans-serif;
+    width:100%;
+    height: 360px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.slide{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: circle(0% at 0 50%);
+
+
+}
+
+.slide.active{
+    clip-path: circle(150% at 0 50%);
+    transition: 2s;
+} 
+
+.slide > img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    object-fit: cover;
+    margin: auto;
+
+}
+
+.slide > div{
+    position:absolute;
+    color:#222;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.slide > div p{
+    color:#fff;
+    font-family: 'Century Gothic', sans-serif, Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    text-shadow: 15px 15px 30px black;
+}
+
+.navigation{
+    display: flex;
+    position: relative;
+    top:50%;
+    align-items: center;
+    transform: translateY(-50%);
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slider:hover .navigation{
+    opacity: 1;
+}
+
+
+.left, .right{
+    z-index: 999;
+    font-size: 1em;
+    color:#000116;
+    color:#222;
+    background-color: rgba(255,255,255,0.8);
+    padding:10px;
+    cursor: pointer;
+    margin: 20px;
+}
+.right{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.left{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.navigationVisibility{
+    z-index: 999;
+    transform: translateY(250px);
+    display: flex;
+    justify-content: center;
+
+}
+
+.navigationVisibility .slideIcon{
+    z-index: 999;
+    background-color: rgba(255,255,255,0.5);
+    width: 20px;
+    height: 10px;
+    margin: 0 6px;
+    border-radius: 2px;
+    box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+}
+
+.slideIcon.active{
+    background-color: #3c40c6;
+}
+
+
+@media (max-width: 900px) {
+    .slider{
+        width:100%;
+    }
+    .slider .slide .info{
+        position:relative;
+        width:60%;
+        margin-left: auto;
+        margin-right: auto;    
+    }
+}
+@media (max-width: 500px){
+    .slider .slide .info h2{
+        font-size:1.8em;
+        line-height: 40px;
+    }
+    .slider .slide .info p{
+        font-size:0.9em;
+        line-height: 40px;
+    }
+}
