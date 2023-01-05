@@ -1,0 +1,52 @@
+.form{
+    padding: 20px;
+    box-shadow: 5px 5px 10px black;
+    display:flex;
+    width:600px;
+    flex-wrap: wrap;
+    margin:auto;
+    position: absolute;
+    top:50%;
+    left:50%;
+    justify-content: center;
+    transform: translate(-50%,-50%);
+}
+.form input{
+    display:block;
+    margin:10px;
+    text-align: center;
+}
+
+.form .data{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: center;
+}
+.form .object{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.btn{
+    padding: 10px 20px;
+    background-color: green;
+    border:none;
+   border-radius: 10px;
+}
+.radio{
+    display: block;
+    background-color: color;
+    display: flex;
+    flex-direction: row;
+}
+.select{
+    display: block;
+    background-color: color;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

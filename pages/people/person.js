@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
+import Formulaire from '../../components/Formulaire';
 
 
 
@@ -20,8 +21,7 @@ export default function Home(){
               <title>People</title>
         </Head>
         <NavBar />
-        <h2>Personnelles</h2>
-        <p>Ici vous avez juste a faire une choix nous nous occupons du rest </p>
+       <Formulaire/>
       </Layout>
     );
 

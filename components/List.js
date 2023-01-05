@@ -9,7 +9,7 @@ export default function List(){
         <ul className={Style.ul}>
             <li>
                 <Link href="/">
-                    <FontAwesomeIcon icon={faHouse}  className={Style.home}/>
+                    <FontAwesomeIcon icon={faHouse} className={Style.home}/>
                     Home
                 </Link>
             </li>
