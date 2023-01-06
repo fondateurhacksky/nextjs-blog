@@ -37,9 +37,9 @@
   
   .form .target {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
   }
   
@@ -157,8 +157,3 @@
   -webkit-appearance: none;
   margin: 0;
 }
-.ssd1 div, .ssd2 div {
-  color: red;
-  /* background-color: #45a049; */
-}
-  

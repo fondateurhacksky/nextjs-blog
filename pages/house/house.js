@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
-import FormHouse from '../../components/FormHouse';
+import SignFormHouse from '../../components/FormHouse';
 
 
 
@@ -21,7 +21,7 @@ export default function House(){
               <title>People</title>
         </Head>
         <NavBar />
-       <FormHouse/>
+       <SignFormHouse/>
       </Layout>
     );
 
