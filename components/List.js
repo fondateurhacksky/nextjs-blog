@@ -20,7 +20,7 @@ export default function List(){
                 </Link>
             </li>
             <li>
-                <Link href="#">
+                <Link href="/house/house">
                     <FontAwesomeIcon icon={faHouseChimney} className={Style.home}/>
                     Mobilier
                 </Link>
@@ -32,7 +32,7 @@ export default function List(){
                 </Link>
             </li>
             <li>
-                <Link href="#">
+                <Link href='/about/about'>
                     <FontAwesomeIcon icon={faAddressCard} className={Style.phone}/>
                     About us
                 </Link>

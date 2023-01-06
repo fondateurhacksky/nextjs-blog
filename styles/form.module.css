@@ -1,52 +1,164 @@
-.form{
-    padding: 20px;
-    box-shadow: 5px 5px 10px black;
-    display:flex;
-    width:600px;
-    flex-wrap: wrap;
-    margin:auto;
-    position: absolute;
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+    position:absolute;
     top:50%;
     left:50%;
-    justify-content: center;
     transform: translate(-50%,-50%);
-}
-.form input{
-    display:block;
+    box-shadow: 5px 5px 5px black, -5px -5px 5px black;
+  }
+  
+  .form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form .data {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .form .data .sdata1, .form .data .sdata2 {
+    width: 50%;
     margin:10px;
-    text-align: center;
-}
+  }
 
-.form .data{
+  .form .data input, .form .data select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form .target {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 10px;
-    justify-content: center;
-}
-.form .object{
-    display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .form .target .radio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 480px;
+  }
+  .form .target .radio div {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  .form .target .radio label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 1rem;
+  }
+  
+  .form .target .radio input[type="radio"] {
+    margin-right: 1rem
+  }
+  
+  .form .target .checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .form .target .checkbox label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .form .target .checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  .form .target .select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .form .target .select label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .form .target .select select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
     margin: 10px;
+  }
+  
+  .form button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .form .error-message {
+    color: red;
+    margin-bottom: 1rem;
+  }
+  .ssdata{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    flex-direction: row;
+    width: 600px;
+  }
+.ssd1,
+.ssd2 {
+    margin: 10px;
+    width: 50%;
 }
 
-.btn{
-    padding: 10px 20px;
-    background-color: green;
-    border:none;
-   border-radius: 10px;
-}
-.radio{
+.form input[type="text"],
+.form input[type="number"]
+ {
     display: block;
-    background-color: color;
-    display: flex;
-    flex-direction: row;
+    height: 40px;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-.select{
-    display: block;
-    background-color: color;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+.checkbox{
+  display: block;
+  width:350px;
 }
+.checkbox label{
+  margin: 10px;
+}
+.form input[type='number']::-webkit-inner-spin-button,
+.form input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ssd1 div, .ssd2 div {
+  color: red;
+  /* background-color: #45a049; */
+}
+  
