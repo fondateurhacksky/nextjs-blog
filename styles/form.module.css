@@ -9,12 +9,11 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    box-shadow: 5px 5px 5px black, -5px -5px 5px black;
   }
   
   .form label {
-    font-weight: bold;
     margin-bottom: 0.5rem;
+    font-size: 'Century Gothic';
   }
   
   .form .data {
@@ -27,14 +26,17 @@
     margin:10px;
   }
 
-  .form .data input, .form .data select {
+ .form .data select {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
   }
-  
+  .form .data select.inputError{
+    border-bottom: 2px solid red;
+  }
   .form .target {
     display: flex;
     flex-direction: row;
@@ -78,28 +80,14 @@
     align-items: center;
     margin-bottom: 1rem;
   }
-  
-  .form .target .checkbox input[type="checkbox"] {
-    margin-right: 0.5rem;
-  }
-  
-  .form .target .select {
+   
+ .form .target .select {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
   
-  .form .target .select label {
-    margin-bottom: 0.5rem;
-  }
-  
-  .form .target .select select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
   
   .form button[type="submit"] {
     background-color: #4caf50;
@@ -116,10 +104,6 @@
     background-color: #45a049;
   }
   
-  .form .error-message {
-    color: red;
-    margin-bottom: 1rem;
-  }
   .ssdata{
     display: flex;
     justify-content: space-between;
@@ -135,19 +119,23 @@
 }
 
 .form input[type="text"],
-.form input[type="number"]
+.form input[type="number"],
+.form input[type="email"],
+.form input[type="tel"]
  {
     display: block;
     height: 40px;
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+
 }
 .checkbox{
-  display: block;
-  width:350px;
+  display:block;
+  font-size: 22px;
 }
 .checkbox label{
   margin: 10px;
@@ -156,4 +144,51 @@
 .form input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.divn{
+  width: 280px;
+  height: 15px;
+  color:red;
+  display: block;
+  position: relative;
+  top:-15px;
+  font-size: 14px;
+}
+
+.form input[type="text"].inputError,
+.form input[type="number"].inputError,
+.form input[type="email"].inputError,
+.form input[type="tel"].inputError
+{
+  border-color:red;
+}
+
+.form input:focus{
+  border-color:blue;
+}
+
+.form .target .checkbox input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:900px) {
+  .form {
+    width: 80%
+  }
 }

@@ -109,6 +109,7 @@
 @media (max-width: 900px) {
     .slider{
         width:100%;
+        display: none;
     }
     .slider .slide .info{
         position:relative;

@@ -26,7 +26,7 @@ export default function List(){
                 </Link>
             </li>
             <li>
-                <Link href="#">
+                <Link href="/signup/signup">
                     <FontAwesomeIcon icon={faRightToBracket} className={Style.sign}/>
                     S'inscrire
                 </Link>

@@ -52,7 +52,34 @@
 }
 
 @media (max-width: 900px) {
-
+    .ul{
+        list-style-type: none;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        cursor: pointer;
+        padding: 0px;
+        background: rgba(55, 66, 250,0.5);
+    }
+    .ul li{
+        text-align: center;
+        font-size: 12px;
+        padding:5px 10px;
+        /* margin:0px 20px; */
+        font-family: 'Open Sans', sans-serif,'Century Gothic';
+        transition: 0.5s;
+        display: inline-block;
+        width:50px;
+        /* padding:6px 0px; */
+    }
+    .ul li:not(:first-child){
+        margin-left:40px;
+    }
+    .ul li.active{
+        border-radius: unset;
+        background-color:unset;
+        padding:0px 0px;
+    }
 }
 @media (max-width: 500px){
 

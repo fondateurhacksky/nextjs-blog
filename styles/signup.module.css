@@ -1,0 +1,78 @@
+.form{
+  display: flex;
+  width: 50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  flex-direction: column;
+}
+
+
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="tel"]
+ {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+
+}
+.form .data {
+  display: flex;
+  flex-direction:column;
+  width: 100%;
+  justify-content: center;
+}
+.form .data .sdata1, .form .data .sdata2, .form .data .sdata3 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.form .data .sdata1  .ssdata1, .form .data .sdata2 .ssdata2, .form .data .sdata3 .ssdata3{
+  width: 40%;
+  margin: 0px 10px;
+}
+.form label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 'Century Gothic';
+}
+.target{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.starget{
+  border-radius: 10px;
+  border:2px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+.form input[type="file"]{
+  display: none;
+}
+.form button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+}
+.form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.textarea{
+  resize: none;
+  width:60%;
+  margin: auto;
+  border: 2px solid #4cd137;
+}
