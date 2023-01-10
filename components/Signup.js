@@ -1,8 +1,32 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import Style from '../styles/signup.module.css';
+import { validationSchema } from './Validationsign';
+import { useRef, useState } from 'react';
+import { handleInput } from './handleInput';
 
 const Signup = () => {
+  
+  const [city, setCity] = useState([ { label: 'La maison se situe a ? :', value: '' }, { label: 'Abidjan', value: 'Abidjan' }, { label: 'Abouaké', value: 'Abouaké' }, ]);
+
+  const [jobType, setjobType] = useState([ { label: 'Vous voulez travailler comme ? :', value: '' }, { label: 'Nounou', value: 'Nounou' }, { label: 'Menager', value: 'Menager' }, ]);
+
+ const btnRef = useRef(null)
+ const inputRef = useRef(null)
+
+  const handleClick = (e) => {
+    e.target.style.display = 'none'
+    document.querySelector(`.${Style.data}`).style.display = 'none';
+    document.querySelector(`.${Style.target}`).style.display = 'none';
+    document.querySelector(`.${Style.data2}`).style.display = 'flex';
+  }
+
+  const handleClick2 = (e) => {
+    btnRef.current.style.display = 'block';
+    document.querySelector(`.${Style.data}`).style.display = 'flex';
+    document.querySelector(`.${Style.target}`).style.display = 'flex';
+    document.querySelector(`.${Style.data2}`).style.display = 'none';
+  }
+
   return (
     <Formik
       initialValues={{
@@ -10,43 +34,45 @@ const Signup = () => {
         prenom: '',
         dateDeNaissance: '',
         lieuDeNaissance: '',
-        numeroDeTelephone: '',
+        numeroDeTelephone: '+225 ',
         codeTuteur: '',
         photoDeProfil: '',
-        photoDIdentite: '',
         competences: '',
+        choice: '',
+        city: '',
+        jobType: '',
+        details: '',
       }}
-      validationSchema={Yup.object({
-        nom: Yup.string().required('Le nom est obligatoire'),
-        prenom: Yup.string().required('Le prénom est obligatoire'),
-        dateDeNaissance: Yup.date().required('La date de naissance est obligatoire'),
-        lieuDeNaissance: Yup.string().required('Le lieu de naissance est obligatoire'),
-        numeroDeTelephone: Yup.string().required('Le numéro de téléphone est obligatoire'),
-        codeTuteur: Yup.string().required('Le code tuteur est obligatoire'),
-        photoDeProfil: Yup.string().required('La photo de profil est obligatoire'),
-        photoDIdentite: Yup.string().required('La photo d\'identité est obligatoire'),
-        competences: Yup.string().required('Les compétences sont obligatoires'),
-      })}
+      validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        // Envoyez les données du formulaire ici
         setSubmitting(false);
       }}
     >
-     <Form className={Style.form}>
+
+      {({values, isSubmitting, touched, errors}) => (
+        <Form className={Style.form} name="form1" enctype="multipart/form-data">
         <div className={Style.data}>
 
             <div className={Style.sdata1}>
 
                 <div className={Style.ssdata1}>
-                    <label htmlFor="nom">Nom</label>
-                    <Field name="nom" type="text" />
-                    <ErrorMessage name="nom" /> 
+                    <Field 
+                    name="nom" 
+                    type="text"
+                    placeholder="Nom"
+                    className={touched.nom && errors.nom ? `${Style.inputError}` : ''}
+                     />
+                    <span className={Style.divn}>{touched.nom && errors.nom ? errors.nom : ' '}</span>
                 </div>
 
               <div className={Style.ssdata1}>
-                <label htmlFor="prenom">Prénom</label>
-                <Field name="prenom" type="text" />
-                <ErrorMessage name="prenom" />
+                <Field 
+                name="prenom"
+                type="text"
+                placeholder="prenom"
+                className={touched.prenom && errors.prenom ? `${Style.inputError}` : ''}
+                  />
+                <span className={Style.divn}>{touched.prenom && errors.prenom ? errors.prenom : ' '}</span>
               </div>
 
             </div>
@@ -55,29 +81,46 @@ const Signup = () => {
                                     
                 <div className={Style.ssdata2}>
                     <label htmlFor="dateDeNaissance">Date de naissance</label>
-                    <Field name="dateDeNaissance" type="date" />
-                    <ErrorMessage name="dateDeNaissance" />
+                    <Field 
+                    name="dateDeNaissance"
+                    type="date"
+                    placeholder="Prenom"
+                    className={touched.dateDeNaissance && errors.dateDeNaissance ? `${Style.inputError}` : ''}
+                     />
+                    <span className={Style.divn}>{touched.dateDeNaissance && errors.dateDeNaissance ? errors.dateDeNaissance : ' '}</span>
                 </div>
 
                 <div className={Style.ssdata2}>
                   <label htmlFor="lieuDeNaissance">Lieu de naissance</label>
-                  <Field name="lieuDeNaissance" type="text" className={Style.form_input} />
-                  <ErrorMessage name="lieuDeNaissance" />
+                  <Field 
+                  name="lieuDeNaissance" 
+                  type="text" 
+                  className={touched.lieuDeNaissance && errors.lieuDeNaissance ? `${Style.inputError}` : ''}
+                   />
+                  <span className={Style.divn}>{touched.lieuDeNaissance && errors.lieuDeNaissance ? errors.lieuDeNaissance : ' '}</span>
                 </div>
 
             </div>
             <div className={Style.sdata3}>
 
                 <div className={Style.ssdata3}>
-                  <label htmlFor="numeroDeTelephone">Téléphone</label>
-                  <Field name="numeroDeTelephone" type="tel" />
-                  <ErrorMessage name="numeroDeTelephone" />
+                  <Field 
+                  name="numeroDeTelephone" 
+                  type="tel"
+                  placeholder="Numero de Telephone"
+                  className={touched.numeroDeTelephone && errors.numeroDeTelephone ? `${Style.inputError}` : ''}
+                   />
+                  <span className={Style.divn}>{touched.numeroDeTelephone && errors.numeroDeTelephone ? errors.numeroDeTelephone : ' '}</span>
                 </div>
 
                 <div className={Style.ssdata3}>
-                  <label htmlFor="codeTuteur" >Code tuteur</label>
-                  <Field name="codeTuteur" type="text" />
-                  <ErrorMessage name="codeTuteur" />
+                  <Field 
+                  name="codeTuteur" 
+                  type="text"
+                  placeholder="Code Tuteur *"
+                  className={touched.codeTuteur && errors.codeTuteur ? `${Style.inputError}` : ''}
+                   />
+                   <span className={Style.divn}>{touched.codeTuteur && errors.codeTuteur ? errors.codeTuteur : ' '}</span>
                 </div>
             </div>
 
@@ -85,22 +128,83 @@ const Signup = () => {
         </div>
         <div className={Style.target}>
             <div className={Style.starget}>
-              <label htmlFor="photoDeProfil">Photo de profil</label>
-              <Field name="photoDeProfil" type="file" />
-              <ErrorMessage name="photoDeProfil" />
-            </div>
-
-            <div className={Style.starget}>
-              <label htmlFor="photoDIdentite">Photo d'identité</label>
-              <Field name="photoDIdentite" type="file" />
-              <ErrorMessage name="photoDIdentite" />
+              <Field
+              name="photoDeProfil" 
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleInput}
+              id="photoDeProfil"
+              ref={inputRef}
+              className={touched.photoDeProfil && errors.photoDeProfil ? `${Style.labelError}` : ''}
+              />
+               <label 
+               className={Style.preview}
+               htmlFor="photoDeProfil" 
+               >
+                    <p>Une Photo de Vous (PNG, JPG, JPEG)</p>
+                </label>
             </div>
         </div>
 
-        <Field name="competences" component="textarea" className={Style.textarea} rows={5} placeholder="Comment pouvons vous aider ?"/>
-        <ErrorMessage name="competences" />
-        <button type="submit">Envoyer</button>
-      </Form>
+      <div className={Style.data2}>
+
+          <div className={Style.selec}>
+              <Field
+              as="select"
+              name="choice"
+              className={touched.choice && errors.choice ? Style.selectError : ''}
+              >
+              <option value="">-- Vous Souhaiterez ? --</option>
+              <option value="rent">Mettre une maison en location</option>
+              <option value="work">Trouver du Travailler</option>
+              </Field>
+            {values.choice === 'rent' && (
+              <Field
+                name="city"
+                as="select"
+                className={touched.city && errors.city ? Style.selectError : ''}
+              >
+                {city.map((item) => (
+                  <option key={item.value} value={item.value}>
+                    {item.label}
+                  </option>))}
+                </Field>
+                  )}
+
+                {values.choice === 'work' && (
+                  <Field
+                    name="jobType"
+                    as="select"
+                    className={touched.jobType && errors.jobType ? Style.selectError : ''}
+                  >
+                    {jobType.map((item) => (
+                      <option key={item.value} value={item.value}>
+                        {item.label}
+                      </option>))}
+                    </Field>
+                      )}
+            </div>
+
+            <div className={Style.present}>
+              <Field
+                name="details"
+                component="textarea"
+                placeholder="Pourriez-vous nous en dire plus sur vous ou sur ce que vous souhaitez partager ?"
+                className={`${Style.textarea} ${touched.details && errors.details ? Style.textareaError : ''}`}
+                rows={8}
+              />
+            </div>              
+          
+          <div className={Style.btns}>
+            <button type="button" onClick={(e) => handleClick2(e) }>prev</button>
+            <button type="submit" >Envoyer</button>
+          </div>
+      </div>
+
+        <button type="button" onClick={(e) => handleClick(e) } ref={btnRef}>Next</button>
+        
+        </Form>
+         )}
     </Formik>
   );
 };

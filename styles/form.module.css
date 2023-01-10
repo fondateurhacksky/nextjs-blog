@@ -14,6 +14,8 @@
   .form label {
     margin-bottom: 0.5rem;
     font-size: 'Century Gothic';
+    position: relative;
+    top:10px;
   }
   
   .form .data {
@@ -33,7 +35,7 @@
     border: none;
     border-bottom: 2px solid #ccc;
     outline: none;
-  }
+}
   .form .data select.inputError{
     border-bottom: 2px solid red;
   }
@@ -55,37 +57,7 @@
     display: flex;
     align-items: center;
     margin-right: 1rem;
-  }
 
-  .form .target .radio label {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    margin-right: 1rem;
-  }
-  
-  .form .target .radio input[type="radio"] {
-    margin-right: 1rem
-  }
-  
-  .form .target .checkbox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .form .target .checkbox label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-   
- .form .target .select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
   }
   
   
@@ -116,29 +88,36 @@
 .ssd2 {
     margin: 10px;
     width: 50%;
-}
-
+  }
+  
 .form input[type="text"],
 .form input[type="number"],
 .form input[type="email"],
 .form input[type="tel"]
  {
-    display: block;
-    height: 40px;
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    outline: none;
-
+   display: block;
+   width: 100%;
+   margin-bottom: 1rem;
+   border: none;
+   border-bottom: 2px solid #ccc;
+   outline: none;
+    
+}
+.form input[type="tel"]{
+  height: 40px;
+  padding: 0.5rem;
 }
 .checkbox{
-  display:block;
-  font-size: 22px;
+  display:inline;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 .checkbox label{
-  margin: 10px;
+  display: inline;
+  font-size: 15px;
+  margin-right: 10px;
+  position: relative;
+  top:-2px;
 }
 .form input[type='number']::-webkit-inner-spin-button,
 .form input[type='number']::-webkit-outer-spin-button {
@@ -168,12 +147,9 @@
   border-color:blue;
 }
 
-.form .target .checkbox input[type="checkbox"] {
-  margin-right: 0.5rem;
+.form .target .radio input[type="radio"] {
+  margin-right: 1rem
 }
-
-
-
 
 
 

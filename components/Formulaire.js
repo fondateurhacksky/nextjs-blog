@@ -14,7 +14,7 @@ const SignupForm = () => {
         contractType: '',
         contractDuration: '',
         codeTuteur: '',
-        salary: '',
+        salary: '15000',
         accomodation: false,
       }}
       validationSchema={validationSchema}
@@ -57,7 +57,7 @@ const SignupForm = () => {
 
           <div className={Style.sdata2}>
 
-              <label htmlFor='email'>Email</label>
+              <label htmlFor='email'>Email *</label>
               <Field 
               type="email" 
               name="email" 
@@ -81,7 +81,7 @@ const SignupForm = () => {
     
       <div className={Style.target}>  
               <div className={Style.ssd1}>
-                <label htmlFor='codeTuteur'>Code Tuteur</label>
+                <label htmlFor='codeTuteur'>Code Tuteur *</label>
                 <Field 
                 type="text" 
                 name="codeTuteur" 
@@ -91,20 +91,22 @@ const SignupForm = () => {
               </div>
               
               <div className={Style.ssd2}>
-                <label htmlFor='numberOfPeople'>Salaire Proposer (en CFA )</label>
+                <label >Frais Total (en CFA )</label>
                 <Field 
                 type="number" 
                 name="salary"
                 className={touched.salary && errors.salary ? `${Style.inputError}` : '' }
+                disabled
                  />
                 <span className={Style.divn}>{touched.salary && errors.salary ? errors.salary : ' '}</span>
               </div>
 
         </div>
           <div className={Style.checkbox}>
-              <label style={{display:'inline'}}htmlFor='accomodation'>Souhaiterais vous que la personne dorme</label>
+              <label style={{display:'inline'}} htmlFor='accomodation'>Lire et accpetez les conditions d'utilisateur</label>
               <Field type="checkbox" name="accomodation" id="accomodation"/>
           </div>
+            <span className={Style.divn}>{ touched.accomodation && errors.accomodation ? errors.accomodation : ' '}</span>
 
       <button type="submit" disabled={isSubmitting}>
               Submit

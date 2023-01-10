@@ -2,6 +2,7 @@
     display: flex;
     padding: 15px;
     background-color: #dfe6e9;
+    width: 100%;
     
 }
 .poster{
@@ -17,7 +18,8 @@
 }
 .sous_page1, .sous_page2, .sous_page3{
     text-align: justify;
-    width:800px;
+    width: 100%;
+
 }
 
 .page  img{
@@ -29,13 +31,13 @@
     .poster{
         display: none;
     }
-    .footer{
-        padding:10px;
-    }
+
     .divText1, .divText2, .divText3{
         text-align: justify;
-        width:200px;
-        margin:20px 20 20px 10px;
+        width: 100%;
+        font-size: 13px;
+        word-spacing: 2px;
+        margin:20px 0px;
     }
 
 }

@@ -7,8 +7,7 @@ export const validationSchema = Yup.object().shape({
       .required('Required'),
 
     email: Yup.string()
-      .email('Invalid email')
-      .required('Required'),
+      .email('Invalid email'),
     city: Yup.string()
       .required('Required'),
     phone: Yup.string()
@@ -18,11 +17,12 @@ export const validationSchema = Yup.object().shape({
     .required('Required'),
     contractType: Yup.string().required('Required'),
     radioOption: Yup.string().required('Veuillez sélectionner une option'),
-    codeTuteur: Yup.string('nom message').required('Required').matches(/^[A-Z0-9]{6}$/,
+    codeTuteur: Yup.string().matches(/^[A-Z0-9]{6}$/,
     'six chiffres et lettres majuscules'
     ),
-    salary: Yup.number('Le salaire dois etre un nombre').positive().integer().required('Required').test('is-number', 'Le salaire dois etre un nombre', (value) => {
-      return !isNaN(value);
-    }),
-    accomodation: Yup.boolean(),
+    accomodation: Yup.boolean().test(
+      'is-true',
+      'Vouz devez accptez les conditions',
+      value => value === true
+    ).required(),
   });

@@ -11,8 +11,7 @@
 
 .form input[type="text"],
 .form input[type="date"],
-.form input[type="tel"]
- {
+.form input[type="tel"] {
     display: inline-block;
     width: 100%;
     padding: 0.5rem;
@@ -22,6 +21,7 @@
     outline: none;
 
 }
+
 .form .data {
   display: flex;
   flex-direction:column;
@@ -38,25 +38,19 @@
   margin: 0px 10px;
 }
 .form label {
-  margin-bottom: 0.5rem;
   display: block;
   font-size: 'Century Gothic';
 }
 .target{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.starget{
-  border-radius: 10px;
-  border:2px solid black;
-  padding: 5px;
-  margin: 5px;
+  justify-content: center;
+  align-items: center;
 }
 .form input[type="file"]{
   display: none;
 }
-.form button[type="submit"] {
+.form button[type="submit"],
+.form button[type="button"]  {
   background-color: #4caf50;
   color: white;
   padding: 0.5rem 1rem;
@@ -72,7 +66,78 @@
 
 .textarea{
   resize: none;
-  width:60%;
+  width:80%;
+  padding: 10px;
   margin: auto;
   border: 2px solid #4cd137;
+  border-radius: 5px;
+  outline: none;
+}
+.data2{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.selec, .present{
+  text-align: center;
+  padding:10px;
+}
+.btns{
+  display: flex;
+  justify-content: center;
+}
+
+.btns button[type="submit"],
+.btns button[type="button"] {
+  width: 50%;
+}
+
+.form .data2 select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+}
+.form input[type="text"].inputError,
+.form input[type="number"].inputError,
+.form input[type="email"].inputError,
+.form input[type="tel"].inputError
+{
+  border-color:red;
+}
+.form input:focus{
+  border-color:green;
+}
+.divn{
+  width: 280px;
+  height: 15px;
+  color:red;
+  display: block;
+  position: relative;
+  top:-15px;
+  font-size: 14px;
+}
+.preview{
+  padding:5px;
+  width: 300px;
+  height: 150px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+.labelError ~ .preview{
+  border: 2px solid red;
+}
+
+.textareaError{
+  border: 2px solid red;
+}
+
+.form .data2 select.selectError{
+  border-color: red;
+}
+
+.preview:hover{
+  background-color: rgba(178, 190, 195,0.5);
 }
