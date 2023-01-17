@@ -1,0 +1,14 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    margin:20px;
+    box-shadow: 5px 5px 5px #95a5a6, -5px -5px 5px #95a5a6;
+}
+
+.card_body a:first-of-type{
+    margin-right:5px;
+}

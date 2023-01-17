@@ -15,14 +15,8 @@ export const validationSchema = Yup.object().shape({
     'votre numero n\'est pas valide'
       )
     .required('Required'),
-    contractType: Yup.string().required('Required'),
-    radioOption: Yup.string().required('Veuillez sélectionner une option'),
     codeTuteur: Yup.string().matches(/^[A-Z0-9]{6}$/,
     'six chiffres et lettres majuscules'
     ),
-    accomodation: Yup.boolean().test(
-      'is-true',
-      'Vouz devez accptez les conditions',
-      value => value === true
-    ).required(),
+    accomodation: Yup.boolean('Vouz devez accptez les conditions').oneOf([true], 'Must be true'),
   });

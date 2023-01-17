@@ -1,0 +1,36 @@
+.form{
+    display: flex;
+    background-color: #f1c40f;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 2px solid #2c3e50;
+}
+.icon{
+    color: white;
+    font-size: 25px;
+    display: inline;
+}
+.form label {
+    font-size: 'Century Gothic';
+    padding-right:10px;
+    font-weight: bold;
+}
+.form .form_label{
+    position: relative;
+    top:5px;
+}
+.form input[type="select"]{
+    border:none;
+    color:red;
+    display: none;
+}
+.form button{
+    background-color: #2ecc71;
+    border:none;
+    padding: 0px 5px;
+    border-radius:5px;
+    box-shadow: 2px 2px 2px black,-2px -2px 2px black;
+}
+.form button:hover{
+    background-color: #27ae60;
+}

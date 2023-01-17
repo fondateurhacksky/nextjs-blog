@@ -3,11 +3,11 @@ import Layout from '../../components/Layout';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
-import Formulaire from '../../components/Formulaire';
+import Persons from '../../components/person';
 
 
 
-export default function Home(){
+export default function Person(){
 
   useEffect(() => {
     const list = document.querySelectorAll('li');
@@ -18,10 +18,10 @@ export default function Home(){
     return (
       <Layout>
         <Head>
-              <title>People</title>
+              <title>Person</title>
         </Head>
         <NavBar />
-       <Formulaire/>
+        <Persons />
       </Layout>
     );
 

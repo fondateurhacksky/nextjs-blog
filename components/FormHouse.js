@@ -11,22 +11,17 @@ const SignupForm = () => {
         email: '',
         city: '',
         phone: '+225',
-        contractType: '',
-        contractDuration: '',
         codeTuteur: '',
         salary: '15000',
         accomodation: false,
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => { 
-        setTimeout(() => {
-          console.log(values);
-          setSubmitting(false);
-        }, 400);
+      onSubmit={(values) => { 
+        console.log(values);
       }}
     >
 
-      {({isSubmitting, errors, touched }) => (
+      {({errors, touched }) => (
     <Form className={Style.form}>
   
       <div className={Style.data}>
@@ -103,12 +98,12 @@ const SignupForm = () => {
 
         </div>
           <div className={Style.checkbox}>
-              <label style={{display:'inline'}} htmlFor='accomodation'>Lire et accpetez les conditions d'utilisateur</label>
+              <label style={{display:'inline'}} htmlFor='accomodation'>J'accepte les conditions d'utilisations</label>
               <Field type="checkbox" name="accomodation" id="accomodation"/>
           </div>
             <span className={Style.divn}>{ touched.accomodation && errors.accomodation ? errors.accomodation : ' '}</span>
 
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit">
               Submit
       </button>
   </Form>

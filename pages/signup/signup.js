@@ -18,7 +18,7 @@ export default function Home(){
     return (
       <Layout>
         <Head>
-              <title>People</title>
+              <title>Singup</title>
         </Head>
         <NavBar />
        <Signup/>

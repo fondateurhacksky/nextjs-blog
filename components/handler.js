@@ -26,13 +26,13 @@ var fileTypes = [
   }
 
 
-export const handleInput = () => {
+export const handleInput = (e) => {
+         var curFiles = document.form1.photoDeProfil.files;
         const preview = document.querySelector(`.${Style.preview}`)
         while(preview.firstChild) {
           preview.removeChild(preview.firstChild);
         }
     
-        var curFiles = document.form1.photoDeProfil.files;
         if(curFiles.length === 0) {
             var para = document.createElement('p');
             para.textContent = 'No files currently selected for upload';
@@ -44,10 +44,8 @@ export const handleInput = () => {
                 var image = document.createElement('img');
                 image.style.width = '285px';
                 image.style.height = '135px';
-                // image.style.float = 'right';
                 image.src = window.URL.createObjectURL(curFiles[0]);
         
-                // preview.appendChild(para);
                 preview.style.borderColor = 'green'
                 preview.appendChild(image);
         
@@ -55,6 +53,6 @@ export const handleInput = () => {
                 para.textContent = 'File name ' + curFiles[0].name + ': Not a valid file type. Update your selection.';
                 preview.appendChild(para);
               }
-            //   list.appendChild(listItem);
           }
+
 }

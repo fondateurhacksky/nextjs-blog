@@ -1,31 +1,65 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import Style from '../styles/signup.module.css';
 import { validationSchema } from './Validationsign';
 import { useRef, useState } from 'react';
-import { handleInput } from './handleInput';
+import {handleInput} from './handler';
+import axios from 'axios';
+
+
 
 const Signup = () => {
   
   const [city, setCity] = useState([ { label: 'La maison se situe a ? :', value: '' }, { label: 'Abidjan', value: 'Abidjan' }, { label: 'Abouaké', value: 'Abouaké' }, ]);
 
   const [jobType, setjobType] = useState([ { label: 'Vous voulez travailler comme ? :', value: '' }, { label: 'Nounou', value: 'Nounou' }, { label: 'Menager', value: 'Menager' }, ]);
-
- const btnRef = useRef(null)
- const inputRef = useRef(null)
+  
+  const btnRef = useRef(null)
 
   const handleClick = (e) => {
-    e.target.style.display = 'none'
-    document.querySelector(`.${Style.data}`).style.display = 'none';
-    document.querySelector(`.${Style.target}`).style.display = 'none';
-    document.querySelector(`.${Style.data2}`).style.display = 'flex';
+    if(document.form1.photoDeProfil.files.length === 1){
+      // console.log(document.form1.photoDeProfil.files[0])
+      e.target.style.display = 'none'
+      document.querySelector(`.${Style.data}`).style.display = 'none';
+      document.querySelector(`.${Style.target}`).style.display = 'none';
+      document.querySelector(`.${Style.data2}`).style.display = 'flex';
+    }else{
+      document.querySelector(`.${Style.preview}`).style.borderColor = 'red'
+      document.querySelector(`.${Style.preview}`).style.color = 'red'
+    }
   }
-
-  const handleClick2 = (e) => {
+  
+   const handleClick2 = (e) => {
     btnRef.current.style.display = 'block';
     document.querySelector(`.${Style.data}`).style.display = 'flex';
     document.querySelector(`.${Style.target}`).style.display = 'flex';
     document.querySelector(`.${Style.data2}`).style.display = 'none';
   }
+
+  const handlerSubmit = async (values) => {
+    const formData = new FormData();
+    formData.append("nom", values.nom);
+    formData.append("prenom", values.prenom);
+    formData.append("dateDeNaissance", values.dateDeNaissance);
+    formData.append("lieuDeNaissance", values.lieuDeNaissance);
+    formData.append("numeroDeTelephone", values.numeroDeTelephone);
+    formData.append("codeTuteur", values.codeTuteur);
+    formData.append("photoDeProfil", document.form1.photoDeProfil.files[0]);
+    formData.append("choice", values.choice);
+    formData.append("jobType", values.jobType);
+    formData.append("city", values.city);
+    formData.append("details", values.details);
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' },
+      onUploadProgress: (event) => {
+        console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
+      },
+    };
+
+    const response = await axios.post('/api/server', formData, config);
+
+   console.log(response.data);
+  };
 
   return (
     <Formik
@@ -36,21 +70,17 @@ const Signup = () => {
         lieuDeNaissance: '',
         numeroDeTelephone: '+225 ',
         codeTuteur: '',
-        photoDeProfil: '',
-        competences: '',
         choice: '',
-        city: '',
         jobType: '',
+        city: '',
         details: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setSubmitting(false);
-      }}
+      onSubmit={ (values) => handlerSubmit(values)}
     >
 
-      {({values, isSubmitting, touched, errors}) => (
-        <Form className={Style.form} name="form1" enctype="multipart/form-data">
+      {({values, touched, errors}) => (
+        <Form className={Style.form} name="form1" method='post'>
         <div className={Style.data}>
 
             <div className={Style.sdata1}>
@@ -129,13 +159,11 @@ const Signup = () => {
         <div className={Style.target}>
             <div className={Style.starget}>
               <Field
-              name="photoDeProfil" 
+              name="photoDeProfil"
+              id="photoDeProfil"
               type="file"
               accept=".jpg, .jpeg, .png"
-              onChange={handleInput}
-              id="photoDeProfil"
-              ref={inputRef}
-              className={touched.photoDeProfil && errors.photoDeProfil ? `${Style.labelError}` : ''}
+              onChange={ (e) => handleInput(e)}
               />
                <label 
                className={Style.preview}
@@ -196,8 +224,11 @@ const Signup = () => {
             </div>              
           
           <div className={Style.btns}>
-            <button type="button" onClick={(e) => handleClick2(e) }>prev</button>
-            <button type="submit" >Envoyer</button>
+            <button type="button" onClick={(e) => handleClick2(e) } >prev</button>
+
+            <button type="submit" >
+              Envoyer
+            </button>
           </div>
       </div>
 
