@@ -3,9 +3,10 @@ import multer from 'multer';
 import { createConnection } from "mysql2";
 const path = require('path');
 const process = require('process');
+const fs = require('fs');
 
+const date = new Date();
 const paths = path.join(`${process.cwd()}`, '\\public\\images\\clients')
-
 var connection = createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -33,31 +34,34 @@ apiRoute.use(uploadMiddleware);
 
 apiRoute.post((req, res) => {
   const body = req.body;
-  console.log(req);
-  console.log(paths);
   const raison = body.jobType ?  body.jobType : body.city;
   if (req.file && req.file.path) {
+    const ex = path.parse(req.file.originalname).ext;
+    const newname = `IMG-${date.getFullYear()}${date.getMonth()}${date.getDay()}-HAK${date.getSeconds()}${date.getMilliseconds()}${ex}`;
+    const newpath = `${paths}\\${newname}`;
     connection.query(`INSERT INTO clients VALUES 
     (NULL, "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}", 
     "${`${body.lieuDeNaissance}`}", "${body.numeroDeTelephone}", 
-    "${body.codeTuteur}", "${req.file.originalname}", "${body.choice}", 
-    "${raison}", "${body.details}")`,
+    "${body.codeTuteur}", "${newname}", "${body.choice}", 
+    "${raison}", "${body.details}", NULL)`,
       function(err, results, fields) {
         if (err) throw err;
-        res.status(200);
+        fs.rename(req.file.path, newpath,(err)=>{
+            if (err) throw err;
+            res.status(200);
+            res.end();
+        })
       }
   )
-
   } else {
     
     res.status(500);
   }
 });
 
-
 export const config = {
   api: {
-    bodyParser: false, // Disallow body parsing, consume as stream
+    bodyParser: false,
   },
 };
 

@@ -1,5 +1,6 @@
 import { Formik, Form, Field} from 'formik';
 import Style from '../styles/formh.module.css';
+import axios from 'axios';
 
 
 const ageOptions = [
@@ -22,6 +23,7 @@ const salaryOptions = [
   { label: '> 100k', value: '> 100k' },
 ];
 
+
 export default function Formh() {
   return (
     <Formik
@@ -31,13 +33,10 @@ export default function Formh() {
         salary: '',
         housing: false,
       }}
-      onSubmit={(values) => {
-        // Filtrez vos articles en fonction des valeurs du formulaire ici
-        console.log(values);
-      }}
+      onSubmit={ (values) => handlerSubmit(values)}
     >
-      {({ setFieldValue }) => (
-        <Form className={Style.form}>
+      {() => (
+        <Form className={Style.form} method='get'>
             <div className={Style.icon}>
             </div>
           <div className="form-group">
