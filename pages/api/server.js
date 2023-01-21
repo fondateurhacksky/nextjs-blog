@@ -4,8 +4,10 @@ import { createConnection } from "mysql2";
 const path = require('path');
 const process = require('process');
 const fs = require('fs');
+import { parseISO, differenceInCalendarYears } from 'date-fns';
 
-const date = new Date();
+const today = new Date();
+const dateString = today.toISOString().slice(0,10);
 const paths = path.join(`${process.cwd()}`, '\\public\\images\\clients')
 var connection = createConnection({
   host     : 'localhost',
@@ -36,14 +38,16 @@ apiRoute.post((req, res) => {
   const body = req.body;
   const raison = body.jobType ?  body.jobType : body.city;
   if (req.file && req.file.path) {
+    var age = differenceInCalendarYears(new Date(), parseISO(body.dateDeNaissance));
     const ex = path.parse(req.file.originalname).ext;
-    const newname = `IMG-${date.getFullYear()}${date.getMonth()}${date.getDay()}-HAK${date.getSeconds()}${date.getMilliseconds()}${ex}`;
+    const newname = `IMG-${dateString}-${today.getSeconds()}${today.getMilliseconds()}-HAK${Math.floor(Math.random()*10000)}.${ex}`;
     const newpath = `${paths}\\${newname}`;
+    console.log(age);
     connection.query(`INSERT INTO clients VALUES 
-    (NULL, "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}", 
+    (NULL, "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}","${age}", 
     "${`${body.lieuDeNaissance}`}", "${body.numeroDeTelephone}", 
     "${body.codeTuteur}", "${newname}", "${body.choice}", 
-    "${raison}", "${body.details}", NULL)`,
+    "${raison}", "${body.details}", DEFAULT, DEFAULT,5000,DEFAULT)`,
       function(err, results, fields) {
         if (err) throw err;
         fs.rename(req.file.path, newpath,(err)=>{

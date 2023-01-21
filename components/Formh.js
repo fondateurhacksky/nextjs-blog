@@ -1,21 +1,25 @@
 import { Formik, Form, Field} from 'formik';
 import Style from '../styles/formh.module.css';
 import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
+import Select from 'react-select'
 
 
 const ageOptions = [
-  { label: '18-24', value: '18-24' },
-  { label: '25-34', value: '25-34' },
-  { label: '35-44', value: '35-44' },
-  { label: '45+', value: '45+' },
+  { label: 'Tout age', value: "all" },
+  { label: '18-24 ans', value: "18-24"},
+  { label: '25-34 ans', value: "25-34"},
+  { label: '35-44+ ans', value: "35-44"},
 ];
 
 const genderOptions = [
-  { label: 'Femme', value: 'Femme' },
-  { label: 'Homme', value: 'Homme' },
+  { label: 'Homme & Femme', value: "all" },
+  { label: 'Femme', value: 'F'},
+  { label: 'Homme', value: 'M'},
 ];
 
 const salaryOptions = [
+  { label: 'Tous', value: "all" },
   { label: '< 30 000', value: '< 30 000' },
   { label: '30 000 - 50 000', value: '30 000 - 50 000' },
   { label: '50 0000 - 80 0000', value: '50 0000 - 80 0000' },
@@ -24,68 +28,123 @@ const salaryOptions = [
 ];
 
 
-export default function Formh() {
+
+export default function Formh({ Data, updateData }) {
+
+  const [age, setAge] = useState('all');
+  const [gender, setGender] = useState('all');
+  const [salary, setsalary] = useState('all');
+
+  useEffect(() => {
+    console.log(salary)
+    console.log(`${age} AND ${gender}`);
+    axios.get('/api/persons/data',{ params: {age: age, gender: gender, salary: salary} })
+        .then(res => updateData(res.data))
+        .catch(err => console.log(err));
+}, [age, gender, salary]);
+
+
   return (
     <Formik
       initialValues={{
         age: '',
         gender: '',
         salary: '',
-        housing: false,
       }}
-      onSubmit={ (values) => handlerSubmit(values)}
+      onChange={(values) => {
+        console.log(values)
+      }}
+      // onSubmit={ (values) => handlerChange(values)}
     >
-      {() => (
-        <Form className={Style.form} method='get'>
+      {({values}) => (
+        <Form className={Style.form} method='get' name="form">
             <div className={Style.icon}>
             </div>
-          <div className="form-group">
-            <label htmlFor="age">Tranche d'âge</label>
-            <Field as="select" name="age" id="age">
-              <option value="">Tous</option>
-              {ageOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Field>
+          <div>
+              <Select
+              placeholder={'Tranche d\'age voulue'}
+              options={ageOptions}
+              name="age" 
+              id="age"
+              onChange={(option) =>setAge(option.value)}
+              styles={{
+                placeholder: (base) => ({
+                  ...base,
+                  fontSize: '1em',
+                  color: '#3498db',
+                  fontWeight: 400,
+                }),
+              }}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'hotpink',
+                  primary: 'black',
+                },
+              })}
+              />
           </div>
 
+          <div>
+              <Select 
+              options={genderOptions}
+              placeholder={'Preference du genre'}
+              name="gender" 
+              id="gender"
+              onChange={(option) =>setGender(option.value)}
+              styles={{
+                placeholder: (base) => ({
+                  ...base,
+                  fontSize: '1em',
+                  color: '#3498db',
+                  fontWeight: 400,
+                }),
+              }}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                width: 200,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'hotpink',
+                  primary: 'black',
+                },
+              })}
+               />
+          </div>
+               
           <div className="form-group">
-            <label htmlFor="gender">Préférence de genre</label>
-            <Field as="select" name="gender" id="gender">
-              <option value="">Tous</option>
-              {genderOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-                           ))}
-                           </Field>
-                         </div>
-               
-                         <div className="form-group">
-                           <label htmlFor="salary">Salaire proposé ( CFA )</label>
-                           <Field as="select" name="salary" id="salary">
-                             <option value="">Tous</option>
-                             {salaryOptions.map((option) => (
-                               <option key={option.value} value={option.value}>
-                                 {option.label}
-                               </option>
-                             ))}
-                           </Field>
-                         </div>
-               
-                         <div className={`"form-group" ${Style.form_label}`}>
-                           <label htmlFor="housing">
-                             <label>Je souhaiterais que la personne dorme</label>
-                             <Field type="checkbox" name="housing" id="housing" />
-                           </label>
-                         </div>
-               
-                         <button type="submit">Filtrer</button>
-                       </Form>
-                     )}
-                   </Formik>
-                 );
-               }
+              <Select 
+              options={salaryOptions} 
+              name="salary" 
+              id="salary"
+              onChange={(option) =>setsalary(option.value)}
+              styles={{
+                placeholder: (base) => ({
+                  ...base,
+                  fontSize: '1em',
+                  color: '#3498db',
+                  fontWeight: 400,
+                }),
+              }}
+              placeholder={'Salaire Proposer'} 
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'hotpink',
+                  primary: 'black',
+                },
+              })}
+               />
+          </div>   
+            {/* <button type="submit">Filtrer</button> */}
+          </Form>
+          )}
+    </Formik>
+  );
+}
 

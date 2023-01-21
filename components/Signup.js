@@ -17,7 +17,6 @@ const Signup = () => {
 
   const handleClick = (e) => {
     if(document.form1.photoDeProfil.files.length === 1){
-      // console.log(document.form1.photoDeProfil.files[0])
       e.target.style.display = 'none'
       document.querySelector(`.${Style.data}`).style.display = 'none';
       document.querySelector(`.${Style.target}`).style.display = 'none';
