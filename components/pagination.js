@@ -1,26 +1,31 @@
-import Link from 'next/link';
+import ReactPaginate from 'react-paginate';
 
-function Pagination() {
+
+function Pagination({ handlePageClick, pagesCount}) {
+
+
+
   return (
-    <nav aria-label="...">
-      <ul className="pagination">
-        <li className="page-item disabled">
-          <span className="page-link">Previous</span>
-        </li>
-        <li className="page-item">
-          <Link href="#" className="page-link">1</Link>
-        </li>
-        <li className="page-item active" aria-current="page">
-          <span className="page-link">2</span>
-        </li>
-        <li className="page-item">
-          <Link href="#" className="page-link">3</Link>
-        </li>
-        <li className="page-item">
-          <Link href="#" className="page-link">Next</Link>
-        </li>
-      </ul>
-    </nav>
+    <ReactPaginate
+    nextLabel="next >"
+    onPageChange={handlePageClick}
+    pageRangeDisplayed={3}
+    marginPagesDisplayed={4}
+    pageCount={pagesCount}
+    previousLabel="< previous"
+    pageClassName="page-item"
+    pageLinkClassName="page-link"
+    previousClassName="page-item"
+    previousLinkClassName="page-link"
+    nextClassName="page-item"
+    nextLinkClassName="page-link"
+    breakLabel="..."
+    breakClassName="page-item"
+    breakLinkClassName="page-link"
+    containerClassName="pagination justify-content-center"
+    activeClassName="active"
+    renderOnZeroPageCount={null}
+  />
   );
 }
 

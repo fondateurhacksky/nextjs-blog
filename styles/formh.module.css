@@ -1,36 +1,42 @@
-.form{
+.navbar{
     display: flex;
-    background-color: #f1c40f;
+    background-color: rgba(52, 152, 219,0.5);
     justify-content: space-evenly;
     align-items: center;
     border-bottom: 2px solid #2c3e50;
 }
-.icon{
-    color: white;
-    font-size: 25px;
-    display: inline;
+.nav_box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 40px;
 }
-.form label {
-    font-size: 'Century Gothic';
-    padding-right:10px;
+
+
+.my_choix{
+    font-size: 1.2rem;
     font-weight: bold;
+    color: white;
+    font-family: cursive;
+    cursor: pointer;
 }
-.form .form_label{
+.cart span:nth-child(1){
+    font-size: 2rem;
+    color:#fff;
+}
+.cart span:nth-child(2){
+    padding: 0 3px;
+    background-color: red;
+    color:#fff;
+    font-weight: bold;
+    border-radius: 5px;
     position: relative;
-    top:5px;
+    top:-10px;
+    left:-8px;
+
 }
-.form input[type="select"]{
-    border:none;
-    color:red;
-    display: none;
-}
-.form button{
-    background-color: #2ecc71;
-    border:none;
-    padding: 0px 5px;
-    border-radius:5px;
-    box-shadow: 2px 2px 2px black,-2px -2px 2px black;
-}
-.form button:hover{
-    background-color: #27ae60;
+.line{
+    color:#fff;
+    font-size: 30px;
+    margin: 0px 5px;
 }

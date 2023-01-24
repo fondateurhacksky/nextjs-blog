@@ -1,8 +1,10 @@
-import { Formik, Form, Field} from 'formik';
 import Style from '../styles/formh.module.css';
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
-import Select from 'react-select'
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
+import { useCart } from "react-use-cart";
+import { VscPersonAdd } from 'react-icons/vsc';
+
 
 
 const ageOptions = [
@@ -29,8 +31,10 @@ const salaryOptions = [
 
 
 
-export default function Formh({ Data, updateData }) {
-
+export default function Formh({ updateData, setShow }) {
+  const {
+    totalUniqueItems
+  } = useCart();
   const [age, setAge] = useState('all');
   const [gender, setGender] = useState('all');
   const [salary, setsalary] = useState('all');
@@ -45,21 +49,7 @@ export default function Formh({ Data, updateData }) {
 
 
   return (
-    <Formik
-      initialValues={{
-        age: '',
-        gender: '',
-        salary: '',
-      }}
-      onChange={(values) => {
-        console.log(values)
-      }}
-      // onSubmit={ (values) => handlerChange(values)}
-    >
-      {({values}) => (
-        <Form className={Style.form} method='get' name="form">
-            <div className={Style.icon}>
-            </div>
+        <div className={Style.navbar}>
           <div>
               <Select
               placeholder={'Tranche d\'age voulue'}
@@ -68,20 +58,25 @@ export default function Formh({ Data, updateData }) {
               id="age"
               onChange={(option) =>setAge(option.value)}
               styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? 'grey' : '#3498db',
+                  width: 220,
+                }),
                 placeholder: (base) => ({
                   ...base,
                   fontSize: '1em',
                   color: '#3498db',
-                  fontWeight: 400,
+                  fontWeight: 300,
                 }),
               }}
               theme={(theme) => ({
                 ...theme,
-                borderRadius: 0,
+                borderRadius: 5,
                 colors: {
                   ...theme.colors,
                   primary25: 'hotpink',
-                  primary: 'black',
+                  primary: '#3498db',
                 },
               })}
               />
@@ -95,56 +90,73 @@ export default function Formh({ Data, updateData }) {
               id="gender"
               onChange={(option) =>setGender(option.value)}
               styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? 'grey' : '#3498db',
+                  width: 220,
+                }),
                 placeholder: (base) => ({
                   ...base,
                   fontSize: '1em',
                   color: '#3498db',
-                  fontWeight: 400,
+                  fontWeight: 300,
                 }),
               }}
               theme={(theme) => ({
                 ...theme,
-                borderRadius: 0,
-                width: 200,
+                borderRadius: 5,
                 colors: {
                   ...theme.colors,
                   primary25: 'hotpink',
-                  primary: 'black',
+                  primary: '#3498db',
                 },
               })}
                />
           </div>
                
-          <div className="form-group">
+          <div>
               <Select 
               options={salaryOptions} 
               name="salary" 
               id="salary"
               onChange={(option) =>setsalary(option.value)}
               styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? 'grey' : '#3498db',
+                  width: 220,
+                }),
                 placeholder: (base) => ({
                   ...base,
                   fontSize: '1em',
                   color: '#3498db',
-                  fontWeight: 400,
+                  fontWeight: 300,
                 }),
               }}
-              placeholder={'Salaire Proposer'} 
               theme={(theme) => ({
                 ...theme,
-                borderRadius: 0,
+                borderRadius: 5,
                 colors: {
                   ...theme.colors,
                   primary25: 'hotpink',
-                  primary: 'black',
+                  primary: '#3498db',
                 },
               })}
                />
-          </div>   
-            {/* <button type="submit">Filtrer</button> */}
-          </Form>
-          )}
-    </Formik>
-  );
+          </div>
+
+          <div className={Style.nav_box}>
+            <span className={Style.my_choix} onClick={() => setShow(false)}>Mes Choix</span> <span className={Style.line}>&#124;</span>
+            <div className={Style.cart}>
+              <span onClick={() => setShow(true)}>
+              <VscPersonAdd />
+              </span>
+              <span className='my_choix'>{totalUniqueItems}</span>
+            </div>
+          </div>
+
+          </div>
+          )
 }
+
 

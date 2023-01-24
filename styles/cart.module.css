@@ -1,0 +1,56 @@
+.article {
+  width: 60%;
+  margin: auto;
+}
+  .cart p {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .cart_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    border-bottom: 2px solid blue;
+    padding-bottom: 5px;
+  }
+  .cart_box div:nth-child(2) button {
+    padding: 5px 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: skyblue;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.cart_box div:nth-child(2) button:hover {
+    background-color: darkseagreen;
+  }
+  .cart_box div:nth-child(2) span {
+    background-color: lightgreen;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .total {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .total span:nth-child(1) {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  .total span:nth-child(2) {
+    font-size: 2rem;
+    color: #ffff;
+    font-weight: bold;
+  }

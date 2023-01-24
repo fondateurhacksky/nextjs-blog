@@ -1,7 +1,10 @@
 import Style from '../styles/List.module.css';
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faPerson, faHouseChimney,faAddressCard, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { AiFillHome} from 'react-icons/ai';
+import { GiPerson } from 'react-icons/gi';
+import { FaHome, FaSignInAlt,FaAddressCard } from 'react-icons/fa';
+
+
 
 export default function List(){
 
@@ -9,31 +12,31 @@ export default function List(){
         <ul className={Style.ul}>
             <li>
                 <Link href="/">
-                    <FontAwesomeIcon icon={faHouse} className={Style.home}/>
+                    <AiFillHome className={Style.home}/>
                     Home
                 </Link>
             </li>
             <li>
-                <Link href='/people/person'>
-                    <FontAwesomeIcon icon={faPerson} className={Style.person}/>
+                <Link href='/people/persons'>
+                    <GiPerson className={Style.person}/>
                     Personne
                 </Link>
             </li>
             <li>
                 <Link href="/house/house">
-                    <FontAwesomeIcon icon={faHouseChimney} className={Style.home}/>
+                    <FaHome className={Style.home}/>
                     Mobilier
                 </Link>
             </li>
             <li>
                 <Link href="/signup/signup">
-                    <FontAwesomeIcon icon={faRightToBracket} className={Style.sign}/>
+                    <FaSignInAlt className={Style.sign}/>
                     S'inscrire
                 </Link>
             </li>
             <li>
                 <Link href='/about/about'>
-                    <FontAwesomeIcon icon={faAddressCard} className={Style.phone}/>
+                    <FaAddressCard className={Style.phone}/>
                     About us
                 </Link>
             </li>

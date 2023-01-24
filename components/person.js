@@ -1,20 +1,15 @@
 import Style from '../styles/persons.module.css';
-import Card from './Card';
-import FormH from './Formh';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AppCart from './AppCart';
 
 
 const Person = () => {
-
-    const [data, setData] = useState([]); // Initialise un hook useState pour gérer les données à afficher dans Card
+    const [data, setData] = useState([]); 
 
     return(
-        <div className={Style.container}>
+        <div className={Style.main}>
             <div className={Style.divBar}></div>
-            <FormH updateData={setData} Data={data}/>
-            <div className={Style.main}>
-                <Card data={data} />
-            </div>
+            <AppCart data={data} updateData={setData} Data={data}/>
         </div>
     )
 }
