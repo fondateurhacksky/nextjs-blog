@@ -4,14 +4,14 @@ import profilePicb from '../public/images/b.jpg';
 import profilePicc from '../public/images/c.jpg';
 import profilePicd from '../public/images/d.jpg';
 import Style from '../styles/SlideBar.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+
 
 function Navigation(props){
     return(
         <div className={Style.navigation}>
-            <FontAwesomeIcon icon={faChevronLeft}  onClick={props.handleClickLeft} className={Style.left}/>
-            <FontAwesomeIcon icon={faChevronRight}  onClick={props.handleClickRight} className={Style.right}/>
+            <BsChevronLeft  onClick={props.handleClickLeft} className={Style.left}/>
+            <BsChevronRight  onClick={props.handleClickRight} className={Style.right}/>
         </div>
     )
 }
@@ -39,19 +39,19 @@ export default function Slide(props){
                     </div>
                 </div>
                 <div className={Style.slide}>
-                    <Image src={profilePicb}  alt="image de silde bar"/>
+                    <Image src={profilePicb}  alt="image de silde bar" priority={true}/>
                     <div className={Style.info}>
                         <p>Pas besion de crie pour ce faire attendre juste comprendre l\'autre </p>
                     </div>
                 </div>
                 <div className={Style.slide}>
-                    <Image src={profilePicc}  alt="image de silde bar"/>
+                    <Image src={profilePicc}  alt="image de silde bar" priority={true}/>
                     <div className={Style.info}>
                         <p>Je suis comme toi meme si je travaille pour toi </p>
                     </div>
                 </div>
                 <div className={Style.slide}>
-                    <Image src={profilePicd}  alt="image de silde bar"/>
+                    <Image src={profilePicd}  alt="image de silde bar" priority={true}/>
                     <div className={Style.info}>
                         <p>La bonne personne construire toujours de bonne personne l'homme n'est pas mauvais de nature</p>
                     </div>

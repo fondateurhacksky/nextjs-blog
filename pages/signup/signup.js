@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Layout from '../../components/Layout';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
@@ -16,13 +15,13 @@ export default function Home(){
 
 
     return (
-      <Layout>
+      <>
         <Head>
-              <title>Singup</title>
+              <title>Sing up</title>
         </Head>
         <NavBar />
        <Signup/>
-      </Layout>
+      </>
     );
 
 }

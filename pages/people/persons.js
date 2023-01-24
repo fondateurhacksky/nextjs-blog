@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Layout from '../../components/Layout';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect, useState } from 'react';
@@ -16,13 +15,13 @@ export default function Persons(){
 
 
     return (
-      <Layout>
+      <>
         <Head>
               <title>Person</title>
         </Head>
         <NavBar />
         <Person />
-      </Layout>
+      </>
     );
 
 }

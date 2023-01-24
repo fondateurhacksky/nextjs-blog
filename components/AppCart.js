@@ -5,24 +5,21 @@ import { CartProvider} from "react-use-cart";
 import { useState, useEffect } from 'react';
 
 const  App = ({ data, updateData, Data }) =>{ 
-  
-  const [hasMounted, setHasMounted] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     setShow(true);
-    setHasMounted(true);
-
+    setDomLoaded(true); 
   }, []);
 
-  if (!hasMounted) {
-    return null;
-  }
     return (
-      <CartProvider>
+      <>
+      {domLoaded && (<CartProvider>
         <FormH updateData={updateData} Data={Data} setShow={setShow} />
           {show ? <Page data={data} /> : <Cart />}
-      </CartProvider>
+      </CartProvider>)}
+      </>
   )
 
 }

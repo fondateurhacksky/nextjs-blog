@@ -55,7 +55,8 @@ export default function Formh({ updateData, setShow }) {
               placeholder={'Tranche d\'age voulue'}
               options={ageOptions}
               name="age" 
-              id="age"
+              id="long-value-select"
+              instanceId="long-value-select"
               onChange={(option) =>setAge(option.value)}
               styles={{
                 control: (baseStyles, state) => ({
@@ -87,7 +88,8 @@ export default function Formh({ updateData, setShow }) {
               options={genderOptions}
               placeholder={'Preference du genre'}
               name="gender" 
-              id="gender"
+              id="long-value-select"
+              instanceId="long-value-select"
               onChange={(option) =>setGender(option.value)}
               styles={{
                 control: (baseStyles, state) => ({
@@ -118,7 +120,8 @@ export default function Formh({ updateData, setShow }) {
               <Select 
               options={salaryOptions} 
               name="salary" 
-              id="salary"
+              id="long-value-select"
+              instanceId="long-value-select"
               onChange={(option) =>setsalary(option.value)}
               styles={{
                 control: (baseStyles, state) => ({

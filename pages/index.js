@@ -1,4 +1,3 @@
-import Layout from '../components/Layout';
 import App from '../components/App';
 import { useEffect } from 'react';
 import Style from '../styles/List.module.css';
@@ -11,8 +10,6 @@ export default function Home() {
    })
 
   return (
-    <Layout>
       <App/>
-    </Layout>
   );
 }
