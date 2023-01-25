@@ -40,8 +40,6 @@ export default function Formh({ updateData, setShow }) {
   const [salary, setsalary] = useState('all');
 
   useEffect(() => {
-    console.log(salary)
-    console.log(`${age} AND ${gender}`);
     axios.get('/api/persons/data',{ params: {age: age, gender: gender, salary: salary} })
         .then(res => updateData(res.data))
         .catch(err => console.log(err));

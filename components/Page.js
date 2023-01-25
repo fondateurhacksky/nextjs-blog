@@ -3,6 +3,7 @@ import Style from '../styles/card.module.css';
 import Pagination from './pagination';
 import { useCart } from "react-use-cart";
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 export default function Page({ data }){
@@ -34,7 +35,7 @@ const { addItem } = useCart();
           <div  className={`card-body ${Style.card_body}`}>
             <h4 className="card-title">{data.nom}</h4>
             <h4 className="card-title">{data.prenom}</h4>
-            <a href="#" className="btn btn-primary">Plus d'info</a>
+            <Link href={`/posts/${data.id}`} className="btn btn-primary">Plus d'info</Link>
             <button className="btn btn-primary" onClick={() => addItem({id: data.id, name: `${data.nom} ${data.prenom}`, price: data.salaire_proposer})} >Intéresser</button>
           </div>
           </div>

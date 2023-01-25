@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import NavBar from '../../components/NavBar';
 import Style from '../../styles/List.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Person from '../../components/person';
 
 

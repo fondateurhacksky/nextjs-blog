@@ -1,5 +1,5 @@
 import Style from '../styles/persons.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AppCart from './AppCart';
 
 
