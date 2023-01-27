@@ -50,9 +50,6 @@ const Signup = () => {
 
     const config = {
       headers: { 'content-type': 'multipart/form-data' },
-      onUploadProgress: (event) => {
-        console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
-      },
     };
 
     const response = await axios.post('/api/server', formData, config);

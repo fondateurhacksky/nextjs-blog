@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import NavBar from '../../components/NavBar';
+import NavBar from '../../components/Layout/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
-import Person from '../../components/person';
+import Person from '../../components/Personelles/Person';
 
 
 

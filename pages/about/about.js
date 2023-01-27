@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import NavBar from '../../components/NavBar';
+import NavBar from '../../components/Layout/NavBar';
 import Style from '../../styles/List.module.css';
 import { useEffect } from 'react';
-import About from '../../components/about';
+import About from '../../components/Layout/about';
 
 export default function Home() {
 

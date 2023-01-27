@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
-import NavBar from '../../components/NavBar';
-import People from '../../components/people';
+import NavBar from '../../components/Layout/NavBar';
+import Overview from '../../components/Mobilier/overview';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import Style from '../../styles/List.module.css';
 import axios from 'axios';
 import useSWR from 'swr'
 
@@ -30,7 +29,7 @@ const Post = () => {
               <title>Toure</title>
         </Head>
         <NavBar />
-        <People data={data}/>
+        <Overview data={data}/>
       </>
     );
 }

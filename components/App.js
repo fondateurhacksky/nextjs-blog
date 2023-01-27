@@ -1,6 +1,6 @@
-import NavBar from './NavBar';
-import SlideBar from './SlideBar';
-import Footer from './Footer';
+import NavBar from './Layout/NavBar';
+import SlideBar from './Layout/SlideBar';
+import Footer from './Layout/Footer';
 import Style  from '../styles/App.module.css'
 
 export default function App() {

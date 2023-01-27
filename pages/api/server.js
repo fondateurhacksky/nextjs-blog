@@ -36,18 +36,19 @@ apiRoute.use(uploadMiddleware);
 
 apiRoute.post((req, res) => {
   const body = req.body;
+  const id = `${body.nom.toLowerCase()}_${body.prenom.toLowerCase()}_${Math.floor(Math.random()*10000)}`
   const raison = body.jobType ?  body.jobType : body.city;
   if (req.file && req.file.path) {
     var age = differenceInCalendarYears(new Date(), parseISO(body.dateDeNaissance));
     const ex = path.parse(req.file.originalname).ext;
-    const newname = `IMG-${dateString}-${today.getSeconds()}${today.getMilliseconds()}-HAK${Math.floor(Math.random()*10000)}.${ex}`;
+    const newname = `IMG-${dateString}-${today.getSeconds()}${today.getMilliseconds()}-HAK${Math.floor(Math.random()*10000)}${ex}`;
     const newpath = `${paths}\\${newname}`;
     console.log(age);
-    connection.query(`INSERT INTO clients VALUES 
-    (NULL, "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}","${age}", 
+    connection.query(`INSERT INTO personnelles VALUES 
+    ("${id}", "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}",
     "${`${body.lieuDeNaissance}`}", "${body.numeroDeTelephone}", 
     "${body.codeTuteur}", "${newname}", "${body.choice}", 
-    "${raison}", "${body.details}", DEFAULT, DEFAULT,5000,DEFAULT)`,
+    "${raison}", "${body.details}")`,
       function(err, results, fields) {
         if (err) throw err;
         fs.rename(req.file.path, newpath,(err)=>{
