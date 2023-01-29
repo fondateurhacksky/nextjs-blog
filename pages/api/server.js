@@ -44,7 +44,7 @@ apiRoute.post((req, res) => {
     const newname = `IMG-${dateString}-${today.getSeconds()}${today.getMilliseconds()}-HAK${Math.floor(Math.random()*10000)}${ex}`;
     const newpath = `${paths}\\${newname}`;
     console.log(age);
-    connection.query(`INSERT INTO personnelles VALUES 
+    connection.query(`INSERT INTO personnes VALUES 
     ("${id}", "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}",
     "${`${body.lieuDeNaissance}`}", "${body.numeroDeTelephone}", 
     "${body.codeTuteur}", "${newname}", "${body.choice}", 

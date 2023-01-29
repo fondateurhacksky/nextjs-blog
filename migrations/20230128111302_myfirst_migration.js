@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('personnelles', function(table){
+    return knex.schema.createTable('Personnes', function(table){
         table.string('User_id', 225).primary();
         table.string('Nom', 225).notNullable();
         table.string('Prenom', 225).notNullable();
@@ -16,7 +16,13 @@ exports.up = function(knex) {
         table.string('ValueRaison', 100).notNullable();
         table.text('Detailes', 'mediumtext').notNullable();
 
-    }).then(result=>console.log(result)).catch(err=>console.log(err))
+    }).createTable('PersonnInfo', function (table) {
+        table.string('User_id');
+        table.foreign('User_id').references('Personnes.User_id');
+        table.string('Status', 100).notNullable();
+        table.integer('Experience').unsigned();
+        table.string('Sierger', 50).notNullable();
+    });
 };
 
 /**
@@ -24,5 +30,7 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTable('personnelles')
+        return knex.schema
+        .dropTable('Personnes')
+        .dropTable("PersonnInfo");
 };
