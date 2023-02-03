@@ -1,0 +1,22 @@
+.main{
+    background-image: url('../public/images/tools/sv.svg');
+    display: flex;
+    background-position: 10% 50%;
+    background-repeat: no-repeat;
+    height: calc(100vh - 61px);
+    justify-content: center; 
+    align-items: center;
+}
+.main a{
+    margin: 20px;
+    text-decoration: none;
+}
+.main button {
+    background-color: rgba(255, 121, 121,0.8);
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 20px;
+}
+.main button:hover{
+    background-color: rgba(255, 121, 121,1.0);
+}

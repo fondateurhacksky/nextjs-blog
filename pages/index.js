@@ -1,6 +1,6 @@
 import App from '../components/App';
 import { useEffect } from 'react';
-import Style from '../styles/List.module.css';
+import Style from '../styles/Nav.module.css';
 
 export default function Home() {
 

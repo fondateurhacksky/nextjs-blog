@@ -37,10 +37,10 @@
   width: 40%;
   margin: 0px 10px;
 }
-.form label {
+/* .form label {
   display: block;
   font-size: 'Century Gothic';
-}
+} */
 .target{
   display: flex;
   justify-content: center;
@@ -68,8 +68,8 @@
   resize: none;
   width:80%;
   padding: 10px;
-  margin: auto;
   border: 2px solid #4cd137;
+  margin: auto;
   border-radius: 5px;
   outline: none;
 }
@@ -78,10 +78,18 @@
   flex-direction: column;
   justify-content: center;
 }
-.selec, .present{
-  text-align: center;
-  padding:10px;
+.present{
+  margin:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
+.sec{
+  display: flex;
+  justify-content: center;
+}
+
 .btns{
   display: flex;
   justify-content: center;
@@ -92,14 +100,6 @@
   width: 50%;
 }
 
-.form .data2 select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  outline: none;
-}
 .form input[type="text"].inputError,
 .form input[type="number"].inputError,
 .form input[type="email"].inputError,

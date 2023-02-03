@@ -8,12 +8,11 @@ exports.up = function(knex) {
         table.string('Nom', 225).notNullable();
         table.string('Prenom', 225).notNullable();
         table.date('DateDeNaissance').notNullable();
-        table.string('LieuDeNaissance',100).notNullable();
+        table.string('LieuDeResidance',100).notNullable();
         table.string('NumeroDeTelephone', 100).notNullable();
         table.string('CodeTuteur', 100).notNullable();
         table.string('Photo', 225).notNullable();
-        table.string('Raison',100).notNullable();
-        table.string('ValueRaison', 100).notNullable();
+        table.text('jobType',  'longtext').notNullable();
         table.text('Detailes', 'mediumtext').notNullable();
 
     }).createTable('PersonnInfo', function (table) {

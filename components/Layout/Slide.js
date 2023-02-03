@@ -41,7 +41,7 @@ export default function Slide(props){
                 <div className={Style.slide}>
                     <Image src={profilePicb}  alt="image de silde bar" priority={true}/>
                     <div className={Style.info}>
-                        <p>Pas besion de crie pour ce faire attendre juste comprendre l\'autre </p>
+                        <p>Pas besion de crie pour ce faire attendre juste comprendre l'autre </p>
                     </div>
                 </div>
                 <div className={Style.slide}>

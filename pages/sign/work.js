@@ -2,25 +2,26 @@ import Head from 'next/head';
 import NavBar from '../../components/Layout/NavBar';
 import Style from '../../styles/Nav.module.css';
 import { useEffect } from 'react';
-import Person from '../../components/Personelles/Person';
+import SignupWork from '../../components/SignupWork';
+import Popup from '../../components/Popup';
 
 
-
-export default function Persons(){
+export default function Work(){
 
   useEffect(() => {
     const list = document.querySelectorAll('li');
-    list[1].classList.add(Style.active);
-   }, [])
+    list[3].classList.add(Style.active);
+   })
 
 
     return (
       <>
         <Head>
-              <title>Person</title>
+              <title>Sing up</title>
         </Head>
         <NavBar />
-        <Person />
+       <SignupWork/>
+       <Popup/>
       </>
     );
 

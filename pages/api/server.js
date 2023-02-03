@@ -46,9 +46,8 @@ apiRoute.post((req, res) => {
     console.log(age);
     connection.query(`INSERT INTO personnes VALUES 
     ("${id}", "${body.nom}", "${body.prenom}", "${body.dateDeNaissance}",
-    "${`${body.lieuDeNaissance}`}", "${body.numeroDeTelephone}", 
-    "${body.codeTuteur}", "${newname}", "${body.choice}", 
-    "${raison}", "${body.details}")`,
+    "${`${body.lieuDeResidance}`}", "${body.numeroDeTelephone}", 
+    "${body.codeTuteur}", "${newname}",'${body.jobType}', "${body.details}")`,
       function(err, results, fields) {
         if (err) throw err;
         fs.rename(req.file.path, newpath,(err)=>{

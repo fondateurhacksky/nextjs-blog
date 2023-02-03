@@ -1,0 +1,7 @@
+.offcanvas-header{
+    background-color: rgba(55, 66, 250,0.5);
+    height: 55px;
+}
+.offcanvas.offcanvas-end.show{
+    background-color: rgba(116, 185, 255,1.0);
+}

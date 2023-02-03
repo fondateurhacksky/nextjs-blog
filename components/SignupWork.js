@@ -1,19 +1,24 @@
 import { Formik, Form, Field } from 'formik';
 import Style from '../styles/signup.module.css';
+import styles from '../styles/popup.module.css'
 import { validationSchema } from './Validationsign';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {handleInput} from './handler';
+import Select from 'react-select';
 import axios from 'axios';
 
 
 
-const Signup = () => {
+const SignupWork = () => {
   
-  const [city, setCity] = useState([ { label: 'La maison se situe a ? :', value: '' }, { label: 'Abidjan', value: 'Abidjan' }, { label: 'Abouaké', value: 'Abouaké' }, ]);
-
-  const [jobType, setjobType] = useState([ { label: 'Vous voulez travailler comme ? :', value: '' }, { label: 'Nounou', value: 'Nounou' }, { label: 'Menager', value: 'Menager' }, ]);
-  
+  const [jobType, setjobType] = useState([
+     { label: 'Nounou', value: 'Nounou' },
+     { label: 'Menager', value: 'Menager' },
+     { label: 'Autre', value: 'Autre' },
+     ]);
+  const [job, setJob] = useState('')
   const btnRef = useRef(null)
+
 
   const handleClick = (e) => {
     if(document.form1.photoDeProfil.files.length === 1){
@@ -39,13 +44,11 @@ const Signup = () => {
     formData.append("nom", values.nom);
     formData.append("prenom", values.prenom);
     formData.append("dateDeNaissance", values.dateDeNaissance);
-    formData.append("lieuDeNaissance", values.lieuDeNaissance);
+    formData.append("lieuDeResidance", values.lieuDeResidance);
     formData.append("numeroDeTelephone", values.numeroDeTelephone);
     formData.append("codeTuteur", values.codeTuteur);
     formData.append("photoDeProfil", document.form1.photoDeProfil.files[0]);
-    formData.append("choice", values.choice);
-    formData.append("jobType", values.jobType);
-    formData.append("city", values.city);
+    formData.append("jobType", JSON.stringify(job[0]));
     formData.append("details", values.details);
 
     const config = {
@@ -53,8 +56,11 @@ const Signup = () => {
     };
 
     const response = await axios.post('/api/server', formData, config);
-
-   console.log(response.data);
+    if(response.status === 200){
+      let popup = document.querySelector(`.${styles.popup}`);
+      popup.classList.add(`${styles.open_popup}`);
+      document.form1.style.filter = 'blur(10px)';
+    }
   };
 
   return (
@@ -63,19 +69,16 @@ const Signup = () => {
         nom: '',
         prenom: '',
         dateDeNaissance: '',
-        lieuDeNaissance: '',
+        lieuDeResidance: '',
         numeroDeTelephone: '+225 ',
         codeTuteur: '',
-        choice: '',
-        jobType: '',
-        city: '',
         details: '',
       }}
       validationSchema={validationSchema}
       onSubmit={ (values) => handlerSubmit(values)}
     >
 
-      {({values, touched, errors}) => (
+      {({touched, errors}) => (
         <Form className={Style.form} name="form1" method='post'>
         <div className={Style.data}>
 
@@ -95,7 +98,7 @@ const Signup = () => {
                 <Field 
                 name="prenom"
                 type="text"
-                placeholder="prenom"
+                placeholder="Prenom"
                 className={touched.prenom && errors.prenom ? `${Style.inputError}` : ''}
                   />
                 <span className={Style.divn}>{touched.prenom && errors.prenom ? errors.prenom : ' '}</span>
@@ -110,20 +113,19 @@ const Signup = () => {
                     <Field 
                     name="dateDeNaissance"
                     type="date"
-                    placeholder="Prenom"
                     className={touched.dateDeNaissance && errors.dateDeNaissance ? `${Style.inputError}` : ''}
                      />
                     <span className={Style.divn}>{touched.dateDeNaissance && errors.dateDeNaissance ? errors.dateDeNaissance : ' '}</span>
                 </div>
 
                 <div className={Style.ssdata2}>
-                  <label htmlFor="lieuDeNaissance">Lieu de naissance</label>
+                  <label htmlFor="lieuDeResidance">Ville de Residance</label>
                   <Field 
-                  name="lieuDeNaissance" 
+                  name="lieuDeResidance" 
                   type="text" 
-                  className={touched.lieuDeNaissance && errors.lieuDeNaissance ? `${Style.inputError}` : ''}
+                  className={touched.lieuDeResidance && errors.lieuDeResidance ? `${Style.inputError}` : ''}
                    />
-                  <span className={Style.divn}>{touched.lieuDeNaissance && errors.lieuDeNaissance ? errors.lieuDeNaissance : ' '}</span>
+                  <span className={Style.divn}>{touched.lieuDeResidance && errors.lieuDeResidance ? errors.lieuDeResidance : ' '}</span>
                 </div>
 
             </div>
@@ -172,43 +174,37 @@ const Signup = () => {
 
       <div className={Style.data2}>
 
-          <div className={Style.selec}>
-              <Field
-              as="select"
-              name="choice"
-              className={touched.choice && errors.choice ? Style.selectError : ''}
-              >
-              <option value="">-- Vous Souhaiterez ? --</option>
-              <option value="rent">Mettre une maison en location</option>
-              <option value="work">Trouver du Travailler</option>
-              </Field>
-            {values.choice === 'rent' && (
-              <Field
-                name="city"
-                as="select"
-                className={touched.city && errors.city ? Style.selectError : ''}
-              >
-                {city.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.label}
-                  </option>))}
-                </Field>
-                  )}
-
-                {values.choice === 'work' && (
-                  <Field
-                    name="jobType"
-                    as="select"
-                    className={touched.jobType && errors.jobType ? Style.selectError : ''}
-                  >
-                    {jobType.map((item) => (
-                      <option key={item.value} value={item.value}>
-                        {item.label}
-                      </option>))}
-                    </Field>
-                      )}
-            </div>
-
+          <Select
+            isMulti
+            name="jobType"
+            options={jobType}
+            placeholder="Qu'elle type de travaille voulez vous ?"
+            className={`${Style.sec} basic-multi-select`}
+            classNamePrefix="select"
+            onChange={(option) =>setJob(option)}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                borderColor: state.isFocused ? 'grey' : '#4cd137',
+                borderWidth: '2px',
+                width: '78%',
+              }),
+              placeholder: (base) => ({
+                ...base,
+                fontSize: '1em',
+                fontWeight: 300,
+              }),
+            }}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 5,
+              colors: {
+                ...theme.colors,
+                primary25: 'hotpink',
+                primary: '#3498db',
+              },
+            })}
+          />
             <div className={Style.present}>
               <Field
                 name="details"
@@ -220,12 +216,13 @@ const Signup = () => {
             </div>              
           
           <div className={Style.btns}>
-            <button type="button" onClick={(e) => handleClick2(e) } >prev</button>
+            <button type="button" onClick={(e) => handleClick2(e) }>prev</button>
 
             <button type="submit" >
               Envoyer
             </button>
-          </div>
+          </div>     
+     
       </div>
 
         <button type="button" onClick={(e) => handleClick(e) } ref={btnRef}>Next</button>
@@ -236,4 +233,4 @@ const Signup = () => {
   );
 };
 
-export default Signup
+export default SignupWork
